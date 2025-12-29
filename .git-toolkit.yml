@@ -1,0 +1,34 @@
+toolkit:
+  phase:
+    required: true
+    pattern: "^phase-[0-9]+$"
+    tag_prefix: "context-phase"
+
+commit:
+  allowed_types:
+    - feat
+    - fix
+    - docs
+    - test
+    - refactor
+    - chore
+    - style
+
+  allowed_scopes:
+    - context
+    - core
+    - driver
+    - api
+
+release:
+  semantic_groups:
+    feat: "🚀 Features"
+    fix: "🐞 Bug Fixes"
+    docs: "📚 Documentation"
+    test: "🧪 Tests"
+    refactor: "♻️ Refactoring"
+    chore: "🔧 Chores"
+    style: "🎨 Style"
+
+version:
+  file: "VERSION"
