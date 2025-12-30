@@ -20,7 +20,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: recursive
           fetch-depth: 0 # BẮT BUỘC để đọc tag & commit history
 
       #      - name: Checkout submodules
@@ -29,6 +28,10 @@ jobs:
       #          cd tools/git/git-toolkit
       #          git fetch origin
       #          git checkout feature/toolkit
+
+      - name: Init submodule (read-only)
+        run: |
+          git submodule update --init --depth 1
 
       - name: Debug repo structure
         run: |
@@ -39,10 +42,6 @@ jobs:
           echo "Toolkit scripts:"
           ls -la $TOOLKIT_SCRIPTS || true
 
-      - name: Setup tools permission
-        run: |
-          find "$TOOLKIT_SCRIPTS" -type f -name "*.sh" -exec chmod +x {} \;
-
       - name: Generate CHANGELOG
         run: |
           $TOOLKIT_SCRIPTS/gen-changelog.sh
@@ -51,6 +50,11 @@ jobs:
         run: |
           git fetch origin master
           git checkout master
+
+      - name: Debug git status
+        run: |
+          git status
+          git submodule status
 
       - name: Commit CHANGELOG
         run: |
