@@ -15,6 +15,14 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0 # BẮT BUỘC để đọc tag & commit history
+
+      #      - name: Checkout submodules
+      #        run: |
+      #          git submodule update --init
+      #          cd tools/git/git-toolkit
+      #          git fetch origin
+      #          git checkout feature/toolkit
+
       - name: Debug repo structure
         run: |
           pwd
