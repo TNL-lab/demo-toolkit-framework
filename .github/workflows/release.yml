@@ -6,6 +6,7 @@ permissions:
 env:
   TOOLKIT_ROOT: tools/git/git-toolkit
   TOOLKIT_SCRIPTS: tools/git/git-toolkit/scripts
+  RELEASE_BRANCH: master
 
 on:
   push:
@@ -21,13 +22,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # BẮT BUỘC để đọc tag & commit history
-
-      #      - name: Checkout submodules
-      #        run: |
-      #          git submodule update --init
-      #          cd tools/git/git-toolkit
-      #          git fetch origin
-      #          git checkout feature/toolkit
+          submodules: recursive
 
       - name: Init submodule (read-only)
         run: |
@@ -38,29 +33,36 @@ jobs:
           pwd
           ls -la
           echo "Toolkit root:"
-          ls -la $TOOLKIT_ROOT || true
+          ls -la "${{ env.TOOLKIT_ROOT }}" || true
           echo "Toolkit scripts:"
-          ls -la $TOOLKIT_SCRIPTS || true
+          ls -la "${{ env.TOOLKIT_SCRIPTS }}" || true
+
+      - name: Setup tools permission
+        run: |
+          find "${{ env.TOOLKIT_SCRIPTS }}" -type f -name "*.sh" -exec chmod +x {} \;
 
       - name: Generate CHANGELOG
         run: |
-          $TOOLKIT_SCRIPTS/gen-changelog.sh
+          "${{ env.TOOLKIT_SCRIPTS }}/gen-changelog.sh"
 
-      - name: Checkout master branch for release commit
+      - name: Checkout release branch for commit
         run: |
-          git fetch origin master
-          git checkout master
+          git fetch origin "${{ env.RELEASE_BRANCH }}"
+          git checkout -B "${{ env.RELEASE_BRANCH }}" origin/"${{ env.RELEASE_BRANCH }}"
 
       - name: Debug git status
         run: |
           git status
           git submodule status
 
-      - name: Commit CHANGELOG
+      - name: Commit CHANGELOG if changed
         run: |
           git config user.name "qa-release-bot"
           git config user.email "qa-release-bot@users.noreply.github.com"
-
-          git add CHANGELOG.md
-          git commit -m "chore(release): update changelog for ${{ github.ref_name }}"
-          git push
+          if ! git diff --quiet CHANGELOG.md; then
+            git add CHANGELOG.md
+            git commit -m "chore(release): update changelog for ${{ github.ref_name }}"
+            git push origin "${{ env.RELEASE_BRANCH }}"
+          else
+            echo "✅ No changes to commit."
+          fi
