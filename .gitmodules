@@ -1,3 +1,4 @@
 [submodule "tools/git/git-toolkit"]
 	path = tools/git/git-toolkit
 	url = https://github.com/TNL-lab/git-toolkit.git
+	branch = feature/toolkit
