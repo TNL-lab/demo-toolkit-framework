@@ -3,6 +3,10 @@ name: Phase Release Automation
 permissions:
   contents: write
 
+env:
+  TOOLKIT_ROOT: tools/git/git-toolkit
+  TOOLKIT_SCRIPTS: tools/git/git-toolkit/scripts
+
 on:
   push:
     tags:
@@ -30,17 +34,18 @@ jobs:
         run: |
           pwd
           ls -la
-          ls -la tools || true
-          ls -la tools/git || true
-          ls -la tools/git/git-toolkit || true
+          echo "Toolkit root:"
+          ls -la $TOOLKIT_ROOT || true
+          echo "Toolkit scripts:"
+          ls -la $TOOLKIT_SCRIPTS || true
 
       - name: Setup tools permission
         run: |
-          find tools/git/git-toolkit/scripts -type f -name "*.sh" -exec chmod +x {} \;
+          find "$TOOLKIT_SCRIPTS" -type f -name "*.sh" -exec chmod +x {} \;
 
       - name: Generate CHANGELOG
         run: |
-          ./tools/git/git-toolkit/scripts/gen-changelog.sh
+          "$TOOLKIT_SCRIPTS"/gen-changelog.sh"
 
       - name: Checkout master branch for release commit
         run: |
