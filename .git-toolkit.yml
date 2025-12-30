@@ -21,6 +21,7 @@ commit:
     - api
     - ci
     - repo
+    - tooling
 
 release:
   semantic_groups:
