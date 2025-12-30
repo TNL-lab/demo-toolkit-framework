@@ -1,6 +1,6 @@
 toolkit:
   phase:
-    required: true
+    required: false
     pattern: "^phase-[0-9]+$"
     tag_prefix: "context-phase"
 

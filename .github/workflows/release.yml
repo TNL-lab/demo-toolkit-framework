@@ -3,7 +3,7 @@ name: Phase Release Automation
 on:
   push:
     tags:
-      - "*phase-*"
+      - "*toolkit-*"
 
 jobs:
   release:
