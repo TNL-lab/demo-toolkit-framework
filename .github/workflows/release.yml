@@ -1,5 +1,8 @@
 name: Phase Release Automation
 
+permissions:
+  contents: write
+
 on:
   push:
     tags:
