@@ -1,0 +1,32 @@
+name: Phase Release Automation
+
+on:
+  push:
+    tags:
+      - "*phase-*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # BẮT BUỘC để đọc tag & commit history
+
+      - name: Setup tools permission
+        run: |
+          chmod +x tools/git/git-toolkit/scripts/*.sh
+
+      - name: Generate CHANGELOG
+        run: |
+          ./tools/git/git-toolkit/scripts/gen-changelog.sh
+
+      - name: Commit CHANGELOG
+        run: |
+          git config user.name "qa-release-bot"
+          git config user.email "qa-release-bot@local"
+          git add CHANGELOG.md
+          git commit -m "chore(release): update changelog for ${{ github.ref_name }}"
+          git push
