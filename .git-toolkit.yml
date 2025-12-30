@@ -2,7 +2,7 @@ toolkit:
   phase:
     required: false
     pattern: "^phase-[0-9]+$"
-    tag_prefix: "context-phase"
+    tag_prefix: "toolkit-phase"
 
 commit:
   allowed_types:
@@ -19,6 +19,8 @@ commit:
     - core
     - driver
     - api
+    - ci
+    - repo
 
 release:
   semantic_groups:
