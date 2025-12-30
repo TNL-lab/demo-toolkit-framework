@@ -45,7 +45,7 @@ jobs:
 
       - name: Generate CHANGELOG
         run: |
-          "$TOOLKIT_SCRIPTS"/gen-changelog.sh"
+          "$TOOLKIT_SCRIPTS/gen-changelog.sh"
 
       - name: Checkout master branch for release commit
         run: |
