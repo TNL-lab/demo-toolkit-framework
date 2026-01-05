@@ -1,31 +1,43 @@
 toolkit:
   phase:
-    required: false
+    enabled: false
     pattern: "^phase-[0-9]+$"
-    tag_prefix: "toolkit-phase"
+    tagPrefix: "toolkit-"
 
 commit:
-  allowed_types:
-    - feat
-    - fix
-    - docs
-    - test
-    - refactor
-    - chore
-    - style
+  types:
+    allowed:
+      - feat
+      - fix
+      - docs
+      - test
+      - refactor
+      - chore
+      - style
 
-  allowed_scopes:
-    - context
-    - core
-    - driver
-    - api
-    - ci
-    - repo
-    - tooling
+  scopes:
+    allowed:
+      - context
+      - core
+      - driver
+      - api
+      - ci
+      - repo
+      - tooling
+
+    meta:
+      - release
+      - build
+      - ci
+      - tooling
 
 release:
   dryRun: false
-  semantic_groups:
+
+  breakingChange:
+    keyword: "BREAKING CHANGE"
+
+  semanticGroups:
     feat: "🚀 Features"
     fix: "🐞 Bug Fixes"
     docs: "📚 Documentation"
@@ -33,22 +45,21 @@ release:
     refactor: "♻️ Refactoring"
     chore: "🔧 Chores"
     style: "🎨 Style"
-  bump_rules:
+
+  versionBumpRules:
     feat: minor
     fix: patch
+    refactor: patch
     docs: none
     test: none
-    refactor: patch
     chore: none
     style: none
-  major_keyword: "BREAKING CHANGE"
-  packages:
-    list:
+
 packages:
   api:
-    version_file: packages/api/VERSION
+    versionFile: "packages/api/VERSION"
   core:
-    version_file: packages/core/VERSION
+    versionFile: "packages/core/VERSION"
 
 version:
-  file: "VERSION"
+  rootFile: "VERSION"
