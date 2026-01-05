@@ -1,11 +1,15 @@
-# chore(tooling): Update git-toolkit release script
+# Merge branch 'master' of https://github.com/TNL-lab/demo-toolkit-framework
 
 ## Changes
 
+### 🚀 Features
+
+- feat(toolkit): Update git-toolkit to support refactor bump rules
+- feat(toolkit): Update git-toolkit.yaml to add bump rules
+- feat(core): add new feature
+
 ### 🔧 Chores
 
-- chore(tooling): Update git-toolkit release script
-- chore(release): bump version to 1.1.8
-- chore(release): Update release notes for toolkit-v1.1.8
+- chore(release): Update release notes for toolkit-v1.2.0
 
 ✅ RELEASE.md generated
