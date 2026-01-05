@@ -1,10 +1,9 @@
-# chore(tooling): update git-toolkit with new semantic version bump script
+# chore(release): bump version to toolkit-v1.1.1
 
 ## Changes
 
 ### 🔧 Chores
 
-- chore(tooling): update git-toolkit with new semantic version bump script
-- chore(release): bump version to toolkit-2
-- chore(release): Update release notes for toolkit-2
+- chore(release): bump version to toolkit-v1.1.1
+- chore(release): Update release notes for toolkit-v1
 
