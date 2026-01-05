@@ -24,9 +24,10 @@ jobs:
           fetch-depth: 0 # BẮT BUỘC để đọc tag & commit history
           submodules: recursive
 
-      - name: Init submodule (read-only)
+      - name: Init & force update submodule
         run: |
-          git submodule update --init --depth 1
+          git submodule sync --recursive
+          git submodule update --init --recursive --force
 
       - name: Debug repo structure
         run: |
