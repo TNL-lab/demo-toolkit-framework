@@ -42,6 +42,11 @@ release:
     chore: none
     style: none
   major_keyword: "BREAKING CHANGE"
+  packages:
+    list:
+      api: packages/api/VERSION
+      web: packages/web/VERSION
+      core: packages/core/VERSION
 
 version:
   file: "VERSION"
