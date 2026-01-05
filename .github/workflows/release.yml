@@ -69,8 +69,7 @@ jobs:
 
       - name: Generate RELEASE
         run: |
-          "${{ env.TOOLKIT_SCRIPTS }}/gen-release-notes.sh" 
-            - name: Generate CHANGELOG
+          "${{ env.TOOLKIT_SCRIPTS }}/gen-release-notes.sh"
 
       - name: Commit RELEASE notes if changed
         run: |
