@@ -24,9 +24,10 @@ jobs:
           fetch-depth: 0 # BẮT BUỘC để đọc tag & commit history
           submodules: recursive
 
-      - name: Init submodule (read-only)
+      - name: Init & force update submodule
         run: |
-          git submodule update --init --depth 1
+          git submodule sync --recursive
+          git submodule update --init --recursive --force
 
       - name: Debug repo structure
         run: |
@@ -64,13 +65,12 @@ jobs:
             git commit -m "chore(release): Update changelog for ${{ github.ref_name }}"
             git push origin "${{ env.RELEASE_BRANCH }}"
           else
-            echo "✅ No changes in CHANGELOG to commit."
+            echo "✅ CHANGELOG unchanged."
           fi
 
       - name: Generate RELEASE
         run: |
-          "${{ env.TOOLKIT_SCRIPTS }}/gen-release-notes.sh" 
-            - name: Generate CHANGELOG
+          "${{ env.TOOLKIT_SCRIPTS }}/gen-release-notes.sh" "${{ github.ref_name }}" > RELEASE.md
 
       - name: Commit RELEASE notes if changed
         run: |
@@ -81,5 +81,5 @@ jobs:
             git commit -m "chore(release): Update release notes for ${{ github.ref_name }}"
             git push origin "${{ env.RELEASE_BRANCH }}"
           else
-            echo "✅ No changes in RELEASE to commit."
+            echo "✅ RELEASE unchanged."
           fi
