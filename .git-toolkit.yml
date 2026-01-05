@@ -44,9 +44,11 @@ release:
   major_keyword: "BREAKING CHANGE"
   packages:
     list:
-      api: packages/api/VERSION
-      web: packages/web/VERSION
-      core: packages/core/VERSION
+packages:
+  api:
+    version_file: packages/api/VERSION
+  core:
+    version_file: packages/core/VERSION
 
 version:
   file: "VERSION"
