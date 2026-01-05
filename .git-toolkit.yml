@@ -36,6 +36,7 @@ release:
   bump_rules:
     feat: minor
     fix: patch
+    refactor: patch
   major_keyword: "BREAKING CHANGE"
 
 version:
