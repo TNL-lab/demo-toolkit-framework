@@ -2,7 +2,7 @@ toolkit:
   phase:
     required: false
     pattern: "^phase-[0-9]+$"
-    tag_prefix: "toolkit-"
+    tag_prefix: "toolkit-phase"
 
 commit:
   allowed_types:
@@ -24,7 +24,7 @@ commit:
     - tooling
 
 release:
-  dryRun: true
+  dryRun: false
   semantic_groups:
     feat: "🚀 Features"
     fix: "🐞 Bug Fixes"
