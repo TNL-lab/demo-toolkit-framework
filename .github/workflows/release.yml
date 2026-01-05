@@ -67,11 +67,12 @@ jobs:
             echo "✅ No changes in CHANGELOG to commit."
           fi
 
-      - name: Generate release notes
+      - name: Generate RELEASE
         run: |
-          "${{ env.TOOLKIT_SCRIPTS }}/gen-release-notes.sh" "${{ github.ref_name }}" > RELEASE.md
+          "${{ env.TOOLKIT_SCRIPTS }}/gen-release-notes.sh" 
+            - name: Generate CHANGELOG
 
-      - name: Commit release notes
+      - name: Commit RELEASE notes if changed
         run: |
           git config user.name "qa-release-bot"
           git config user.email "qa-release-bot@users.noreply.github.com"
