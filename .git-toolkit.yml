@@ -33,6 +33,10 @@ release:
     refactor: "♻️ Refactoring"
     chore: "🔧 Chores"
     style: "🎨 Style"
+  bump_rules:
+    feat: minor
+    fix: patch
+  major_keyword: "BREAKING CHANGE"
 
 version:
   file: "VERSION"
