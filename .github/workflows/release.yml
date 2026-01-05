@@ -11,7 +11,7 @@ env:
 on:
   push:
     tags:
-      - "*toolkit-*"
+      - "*toolkit-v*"
 
 jobs:
   release:
@@ -83,6 +83,15 @@ jobs:
           else
             echo "✅ RELEASE unchanged."
           fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body_path: RELEASE.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Auto bump VERSION from tag
         run: |

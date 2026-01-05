@@ -24,6 +24,7 @@ commit:
     - tooling
 
 release:
+  dryRun: true
   semantic_groups:
     feat: "🚀 Features"
     fix: "🐞 Bug Fixes"
