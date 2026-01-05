@@ -70,7 +70,7 @@ jobs:
 
       - name: Generate RELEASE
         run: |
-          bash "${{ env.TOOLKIT_SCRIPTS }}/gen-release-notes.sh" "${{ github.ref_name }}" > RELEASE.md
+          "${{ env.TOOLKIT_SCRIPTS }}/gen-release-notes.sh" "${{ github.ref_name }}" > RELEASE.md
 
       - name: Commit RELEASE notes if changed
         run: |
