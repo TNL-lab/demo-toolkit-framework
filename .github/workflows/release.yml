@@ -101,7 +101,6 @@ jobs:
         run: |
           git config user.name "qa-release-bot"
           git config user.email "qa-release-bot@users.noreply.github.com"
-
           if ! git diff --quiet VERSION; then
             git add VERSION
             git commit -m "chore(release): bump version to ${{ github.ref_name }}"
