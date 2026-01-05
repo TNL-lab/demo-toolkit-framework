@@ -1,13 +1,9 @@
-# feat(api): Add package structure
+# feat(api): Update git-toolkit.yml to support version_file in monorepo
 
 ## Changes
 
 ### 🚀 Features
 
-- feat(api): Add package structure
-
-### 🔧 Chores
-
-- chore(release): Update release notes for toolkit-v1.0.7
+- feat(api): Update git-toolkit.yml to support version_file in monorepo
 
 ✅ RELEASE.md generated
