@@ -1,9 +1,9 @@
-# chore(tooling): Update git-toolkit release script
+# chore(release): Update release notes for toolkit-v1.1.6
 
 ## Changes
 
 ### 🔧 Chores
 
-- chore(tooling): Update git-toolkit release script
+- chore(release): Update release notes for toolkit-v1.1.6
 
 ✅ RELEASE.md generated
