@@ -1,16 +1,10 @@
-# refactor(ci): Update release.yml to add auto bump version steps
+# chore(tooling): update git-toolkit with new semantic version bump script
 
 ## Changes
 
-### ♻️ Refactoring
-
-- refactor(ci): Update release.yml to add auto bump version steps
-
 ### 🔧 Chores
 
-- chore(tooling): update git-toolkit with version bump script
-- chore(release): Update release notes for toolkit-1
-- chore(tooling): update git-toolkit submodule
-- chore(release): Update release notes for toolkit-6
-- chore(release): Update release notes for toolkit-1
+- chore(tooling): update git-toolkit with new semantic version bump script
+- chore(release): bump version to toolkit-2
+- chore(release): Update release notes for toolkit-2
 
