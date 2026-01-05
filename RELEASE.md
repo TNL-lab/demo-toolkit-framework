@@ -1,13 +1,11 @@
-# feat(toolkit): Update git-toolkit to support dryRun and tag_prefix
+# chore(tooling): Update git-toolkit release script
 
 ## Changes
 
-### 🚀 Features
-
-- feat(toolkit): Update git-toolkit to support dryRun and tag_prefix
-
 ### 🔧 Chores
 
-- chore(release): Update release notes for toolkit-v1.1.7
+- chore(tooling): Update git-toolkit release script
+- chore(release): bump version to 1.1.8
+- chore(release): Update release notes for toolkit-v1.1.8
 
 ✅ RELEASE.md generated
