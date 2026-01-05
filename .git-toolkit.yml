@@ -40,7 +40,6 @@ release:
     test: none
     refactor: patch
     chore: none
-    style: none
   major_keyword: "BREAKING CHANGE"
 
 version:
