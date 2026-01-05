@@ -1,4 +1,4 @@
-# Merge branch 'master' of https://github.com/TNL-lab/demo-toolkit-framework
+# feat(api): Update git-toolkit.yml to support monorepo
 
 ## Changes
 
@@ -27,8 +27,6 @@
 ### 🔧 Chores
 
 - chore(tooling): update git-toolkit release script
-- chore(release): bump version to 1.3.1
-- chore(release): Update release notes for toolkit-v1.0.4
 - chore(tooling): update git-toolkit release script
 - chore(tooling): update git-toolkit release script
 - chore(tooling): update git-toolkit release script
