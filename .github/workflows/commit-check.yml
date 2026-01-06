@@ -1,5 +1,8 @@
 name: Commit Message Check
 
+permissions:
+  contents: write
+
 env:
   TOOLKIT_ROOT: tools/git/git-toolkit
   TOOLKIT_SCRIPTS: tools/git/git-toolkit/scripts
