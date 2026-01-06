@@ -1,8 +1,9 @@
 toolkit:
+  mode: monorepo
   phase:
     enabled: false
     pattern: "^phase-[0-9]+$"
-    tagPrefix: "toolkit-"
+    tagPrefix: ""
 
 commit:
   types:
@@ -54,6 +55,8 @@ release:
     test: none
     chore: none
     style: none
+
+  tagFormat: "{package}-v{version}"
 
 packages:
   api:

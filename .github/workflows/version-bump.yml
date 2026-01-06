@@ -1,0 +1,27 @@
+name: Version Bump (Monorepo)
+
+env:
+  TOOLKIT_ROOT: tools/git/git-toolkit
+  TOOLKIT_SCRIPTS: tools/git/git-toolkit/scripts
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup permission
+        run: |
+          find "${{ env.TOOLKIT_SCRIPTS }}" -type f -name "*.sh" -exec chmod +x {} \;
+
+      - name: Bump versions & tag
+        run: |
+          "${{ env.TOOLKIT_SCRIPTS }}/bump-version.sh"

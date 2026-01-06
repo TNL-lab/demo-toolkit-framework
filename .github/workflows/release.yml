@@ -11,7 +11,7 @@ env:
 on:
   push:
     tags:
-      - "*toolkit-v*"
+      - "*-v*"
 
 jobs:
   release:
@@ -92,19 +92,3 @@ jobs:
           body_path: RELEASE.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Auto bump VERSION
-        run: |
-          "${{ env.TOOLKIT_SCRIPTS }}/bump-version.sh" "${{ github.ref_name }}"
-
-      - name: Commit VERSION if changed
-        run: |
-          git config user.name "qa-release-bot"
-          git config user.email "qa-release-bot@users.noreply.github.com"
-          if ! git diff --quiet VERSION; then
-            git add VERSION
-            git commit -m "chore(release): bump version to ${{ github.ref_name }}"
-            git push origin "${{ env.RELEASE_BRANCH }}"
-          else
-            echo "✅ VERSION unchanged"
-          fi

@@ -1,0 +1,47 @@
+name: Package Version Bump
+
+permissions:
+  contents: write
+
+env:
+  TOOLKIT_ROOT: tools/git/git-toolkit
+  TOOLKIT_SCRIPTS: tools/git/git-toolkit/scripts
+  RELEASE_BRANCH: master
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Init & update submodules
+        run: |
+          git submodule sync --recursive
+          git submodule update --init --recursive --force
+
+      - name: Setup script permissions
+        run: |
+          find "${{ env.TOOLKIT_SCRIPTS }}" -type f -name "*.sh" -exec chmod +x {} \;
+
+      - name: Configure git user
+        run: |
+          git config user.name "qa-release-bot"
+          git config user.email "qa-release-bot@users.noreply.github.com"
+
+      - name: Auto bump package versions
+        run: |
+          "${{ env.TOOLKIT_SCRIPTS }}/bump-version.sh"
+
+      - name: Push commits & tags
+        run: |
+          git push origin HEAD --tags

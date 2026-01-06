@@ -1,0 +1,19 @@
+name: Commit Message Check
+
+env:
+  TOOLKIT_ROOT: tools/git/git-toolkit
+  TOOLKIT_SCRIPTS: tools/git/git-toolkit/scripts
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify commit message
+        run: |
+          "${{ env.TOOLKIT_SCRIPTS }}/verify-commit-message.sh" -
