@@ -1,13 +1,14 @@
 ▶ ✅ RELEASE.md generated
-it release script
+o 0.3.0
 
 ## Changes
 
 ### 🚀 Features
 
-- feat(api): update git-toolkit release script
+- feat(core): update git-toolkit release script
 
 ### 🔧 Chores
 
-- chore(release): Update release notes for toolkit-v1.6.0
+- chore(release): bump core to 0.3.0
+- chore(release): bump core to 0.2.0
 
