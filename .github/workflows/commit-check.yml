@@ -17,6 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup script permissions
+        run: |
+          find "${{ env.TOOLKIT_SCRIPTS }}" -type f -name "*.sh" -exec chmod +x {} \;
+
       - name: Verify commit message
         run: |
-          "${{ env.TOOLKIT_SCRIPTS }}/verify-commit-message.sh" -
+          "${{ env.TOOLKIT_SCRIPTS }}/verify-commit-message.sh"
