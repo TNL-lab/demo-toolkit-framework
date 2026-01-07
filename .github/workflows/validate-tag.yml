@@ -1,0 +1,59 @@
+name: Validate Commits on Tag
+
+permissions:
+  contents: write
+
+env:
+  TOOLKIT_ROOT: tools/git/git-toolkit
+  TOOLKIT_SCRIPTS: tools/git/git-toolkit/scripts
+
+on:
+  push:
+    tags:
+      - "*-*"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Init & force update submodule
+        run: |
+          git submodule sync --recursive
+          git submodule update --init --recursive --force
+
+      - name: Debug repo structure
+        run: |
+          pwd
+          ls -la
+          echo "Toolkit root:"
+          ls -la "${{ env.TOOLKIT_ROOT }}" || true
+          echo "Toolkit scripts:"
+          ls -la "${{ env.TOOLKIT_SCRIPTS }}" || true
+
+      - name: Setup tools permission
+        run: |
+          find "${{ env.TOOLKIT_SCRIPTS }}" -type f -name "*.sh" -exec chmod +x {} \;
+
+      - name: Validate commits in tag
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          TOOL="${{ env.TOOLKIT_SCRIPTS }}/verify-commit-message.sh"
+
+          PREV_TAG=$(git describe --tags --abbrev=0 "$TAG"^ 2>/dev/null || echo "")
+
+          if [[ -n "$PREV_TAG" ]]; then
+            RANGE="$PREV_TAG..$TAG"
+          else
+            RANGE="$TAG"
+          fi
+
+          git log "$RANGE" --format=%s | while read msg; do
+            echo "$msg" | "$TOOL" -
+          done
